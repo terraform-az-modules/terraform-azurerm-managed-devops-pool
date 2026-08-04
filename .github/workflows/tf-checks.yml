@@ -6,11 +6,16 @@ on:
   workflow_dispatch:
 jobs:
 # Update 'Job name' and 'working_directory' as needed based on the module structure.
-  complete-example:
+  stateful-example:
     uses: clouddrove/github-shared-workflows/.github/workflows/tf-checks.yml@master
     with:
-      working_directory: './examples/complete/'
-  
+      working_directory: './examples/stateful/'
+
+  stateless-example:
+    uses: clouddrove/github-shared-workflows/.github/workflows/tf-checks.yml@master
+    with:
+      working_directory: './examples/stateless-with-weekday-standby/'
+
 # Seperate Job for TFlint workflow call
   tf-lint:
     uses: clouddrove/github-shared-workflows/.github/workflows/tf-lint.yml@master

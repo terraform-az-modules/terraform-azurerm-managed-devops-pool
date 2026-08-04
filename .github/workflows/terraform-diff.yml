@@ -6,12 +6,23 @@ on:
 
 jobs:
 # Update 'Job name' and 'terraform_directory' as needed based on the module structure.
-  complete-example:
+  stateful-example:
     if: github.actor != 'dependabot[bot]'
     uses: clouddrove/github-shared-workflows/.github/workflows/tf-pr-checks.yaml@master
     with:
       provider: 'azurerm'
-      terraform_directory: 'examples/complete'
+      terraform_directory: 'examples/stateful'
+      target_branch: 'master'
+    secrets:
+      AZURE_CREDENTIALS: ${{ secrets.AZURE_CREDENTIALS }}
+      ARM_SUBSCRIPTION_ID: ${{ secrets.ARM_SUBSCRIPTION_ID }}
+
+  stateless-example:
+    if: github.actor != 'dependabot[bot]'
+    uses: clouddrove/github-shared-workflows/.github/workflows/tf-pr-checks.yaml@master
+    with:
+      provider: 'azurerm'
+      terraform_directory: 'examples/stateless-with-weekday-standby'
       target_branch: 'master'
     secrets:
       AZURE_CREDENTIALS: ${{ secrets.AZURE_CREDENTIALS }}
