@@ -9,7 +9,7 @@ resource "azurerm_role_assignment" "devops_infrastructure_reader" {
   principal_id                     = var.devops_infrastructure_principal_id
   skip_service_principal_aad_check = true
 
-  depends_on = [terraform_data.validation]
+  # depends_on = [terraform_data.validation]
 }
 
 resource "azurerm_role_assignment" "devops_infrastructure_network_contributor" {
@@ -20,5 +20,5 @@ resource "azurerm_role_assignment" "devops_infrastructure_network_contributor" {
   principal_id                     = var.devops_infrastructure_principal_id
   skip_service_principal_aad_check = true
 
-  depends_on = [terraform_data.validation]
+  # depends_on = [terraform_data.validation]
 }
