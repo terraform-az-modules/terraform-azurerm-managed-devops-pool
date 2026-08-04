@@ -5,8 +5,6 @@ provider "azurerm" {
   features {}
 }
 
-data "azurerm_client_config" "current_client_config" {}
-
 locals {
   name        = "core"
   environment = "test"

@@ -17,7 +17,7 @@ module "labels" {
 ##-----------------------------------------------------------------------------
 ## Input Validation
 ##-----------------------------------------------------------------------------
-resource "terraform_data" "validation" {
+resource "terraform_data" "main" {
   count = var.enable ? 1 : 0
 
   input = local.managed_devops_pool_name
@@ -147,7 +147,7 @@ resource "azurerm_dev_center" "default" {
     }
   }
 
-  depends_on = [terraform_data.validation]
+  depends_on = [terraform_data.main]
 }
 
 ##-----------------------------------------------------------------------------
@@ -173,7 +173,7 @@ resource "azurerm_dev_center_project" "default" {
     }
   }
 
-  depends_on = [terraform_data.validation]
+  depends_on = [terraform_data.main]
 }
 
 ##-----------------------------------------------------------------------------
@@ -437,7 +437,7 @@ resource "azurerm_managed_devops_pool" "default" {
   }
 
   depends_on = [
-    terraform_data.validation,
+    terraform_data.main,
     azurerm_role_assignment.devops_infrastructure_reader,
     azurerm_role_assignment.devops_infrastructure_network_contributor
   ]
